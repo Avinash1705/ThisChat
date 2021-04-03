@@ -2,26 +2,37 @@ package com.example.thisapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import android.widget.Toast;
 
+import com.example.thisapp.Adapters.FragmentsAdapter;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity {
+    ViewPager viewPager;
+    TabLayout tableLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        init();
+
+        viewPager.setAdapter(new FragmentsAdapter(getSupportFragmentManager()));
+        tableLayout.setupWithViewPager(viewPager);
     }
     private void init(){
-
+    viewPager=findViewById(R.id.viewpager_id);
+    tableLayout=findViewById(R.id.tablayout_id);
     }
 
     @Override

@@ -9,9 +9,20 @@
     android:background="@color/grayBackground"
     android:padding="10dp">
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="hi main activity"/>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        android:elevation="12dp"
+        app:tabTextColor="@color/white"
+        app:tabIndicatorColor="@color/purple_200"
+        app:tabSelectedTextColor="@color/red"
+        app:tabGravity="fill"
+        app:tabMode="fixed"/>
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
