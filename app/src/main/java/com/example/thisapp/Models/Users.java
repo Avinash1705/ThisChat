@@ -52,7 +52,7 @@ public class Users {
         this.uPassword = uPassword;
     }
 
-    public String getuId(String key) {
+    public String getuId() {
         return uId;
     }
 
