@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.thisapp.Adapters.FragmentsAdapter;
@@ -49,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(),Signup.class));
                 break;
+            case R.id.menu_groupChat: startActivity(new Intent(getApplicationContext(),GroupChat.class));
+                break;
             default:
                 Toast.makeText(getApplicationContext(), " Default working", Toast.LENGTH_SHORT).show();
 
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

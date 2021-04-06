@@ -9,6 +9,12 @@ public class MessageModel {
         this.message = message;
         this.timestamp = timestamp;
     }
+
+    public MessageModel(String uId, String message) {
+        this.uId = uId;
+        this.message = message;
+    }
+
     public MessageModel() { }
 
     public String getuId() {

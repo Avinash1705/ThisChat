@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.thisapp.Models.Users;
@@ -32,6 +33,7 @@ public class Signup extends AppCompatActivity {
     private static final String TAG = "raw";
     Button bt_SignUp,bt_googleLogin;
     private EditText mName,mPass,mEmail;
+    TextView tv_login;
     String st_email,st_pass;
     private FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient ;
@@ -77,6 +79,12 @@ public class Signup extends AppCompatActivity {
                 SignUpGoogleAccount();
             }
         });
+        tv_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Signup.this,SignIn.class));
+            }
+        });
     }
     private void init(){
         bt_SignUp=findViewById(R.id.bt_SignUp);
@@ -84,7 +92,9 @@ public class Signup extends AppCompatActivity {
         mPass=findViewById(R.id.et_pass);
         mEmail=findViewById(R.id.et_email);
         bt_googleLogin=findViewById(R.id.bt_googleLogin);
+        tv_login=findViewById(R.id.tv_login);
     }
+
     private void SignUpEmailPass(){
         st_name=mName.getText().toString();
         st_email=mEmail.getText().toString();
