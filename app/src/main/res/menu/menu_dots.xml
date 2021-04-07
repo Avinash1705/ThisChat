@@ -4,4 +4,6 @@
     android:title="Signout" />
     <item android:id="@+id/menu_groupChat"
         android:title="Group Chat" />
+    <item android:id="@+id/menu_settings"
+        android:title="Settings" />
 </menu>

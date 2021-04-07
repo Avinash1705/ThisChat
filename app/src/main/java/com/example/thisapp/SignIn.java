@@ -26,10 +26,12 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         init();
+        getSupportActionBar().hide();
         auth=FirebaseAuth.getInstance();
     }
 
     public void SignupActivityFn(View view) {
+        FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(SignIn.this,Signup.class));
     }
     private void init(){
@@ -43,16 +45,37 @@ public class SignIn extends AppCompatActivity {
     public void SignInActivityFn(View view) {
         st_email=mEmail.getText().toString();
         st_pass=mPass.getText().toString();
-        auth.signInWithEmailAndPassword(st_email,st_pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    startActivity(new Intent(SignIn.this,MainActivity.class));
+        if(st_email.isEmpty()){
+            mEmail.setError("Enter your Email");
+            return;
+        }
+        if (st_pass.isEmpty()){
+            mPass.setError("Enter password");
+            return;
+        }
+        if((st_email!=null) && ((st_pass )!=null) ){
+            auth.signInWithEmailAndPassword(st_email,st_pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+
+                        startActivity(new Intent(SignIn.this,MainActivity.class));
+                    }
+                    else{
+                        Toast.makeText(SignIn.this, "SignIn failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else{
-                    Toast.makeText(SignIn.this, "SignIn failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+        }
+
+    }
+
+    public void SignInGoogle(View view) {
+        Signup signup=new Signup();
+        signup.SignUpGoogleAccount();
+}
+
+    public void Fblogin(View view) {
+
     }
 }

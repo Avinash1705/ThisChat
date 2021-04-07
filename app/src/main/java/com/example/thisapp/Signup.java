@@ -55,6 +55,7 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         init();
+        getSupportActionBar().hide();
         //only dec
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -99,6 +100,18 @@ public class Signup extends AppCompatActivity {
         st_name=mName.getText().toString();
         st_email=mEmail.getText().toString();
         st_pass=mPass.getText().toString();
+        if(st_email.isEmpty()){
+            mEmail.setError("Enter your Email");
+            return;
+        }
+        if (st_pass.isEmpty()){
+            mPass.setError("Enter password");
+            return;
+        }
+        if (st_name.isEmpty()){
+            mPass.setError("Enter Name");
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(st_email,st_pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -110,7 +123,7 @@ public class Signup extends AppCompatActivity {
                     database.getReference().child("Users")
                             .child(task.getResult().getUser().getUid()).setValue(users);
                     Toast.makeText(Signup.this, "SignUp successful done", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 }
                 else{
                     Toast.makeText(Signup.this, " SignUp failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -118,7 +131,7 @@ public class Signup extends AppCompatActivity {
             }
         });
     }
-    private void SignUpGoogleAccount(){
+    public void SignUpGoogleAccount(){
         signIn();
 
     }

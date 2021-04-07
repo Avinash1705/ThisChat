@@ -1,7 +1,7 @@
 package com.example.thisapp.Models;
 
 public class Users {
-    String uProfilePic,uName,uEmail,uPassword,uId,uLastMessage;
+    String uProfilePic,uName,uEmail,uPassword,uId,uLastMessage,status;
 
     public Users(String uProfilePic, String uName, String uEmail, String uPassword, String uId, String uLastMessage) {
         this.uProfilePic = uProfilePic;
@@ -10,6 +10,14 @@ public class Users {
         this.uPassword = uPassword;
         this.uId = uId;
         this.uLastMessage = uLastMessage;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Users(String uName, String uEmail, String uPassword) {

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         init();
+        getSupportActionBar().hide();
 
         viewPager.setAdapter(new FragmentsAdapter(getSupportFragmentManager()));
         tableLayout.setupWithViewPager(viewPager);
@@ -50,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(),Signup.class));
                 break;
-            case R.id.menu_groupChat: startActivity(new Intent(getApplicationContext(),GroupChat.class));
+            case R.id.menu_groupChat:
+                startActivity(new Intent(getApplicationContext(),GroupChat.class));
+                break;
+            case R.id.menu_settings:
+                startActivity(new Intent(getApplicationContext(),settingActivity.class));
                 break;
             default:
                 Toast.makeText(getApplicationContext(), " Default working", Toast.LENGTH_SHORT).show();

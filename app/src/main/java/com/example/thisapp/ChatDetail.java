@@ -48,6 +48,7 @@ public class ChatDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_detail);
+        getSupportActionBar().hide();
         init();
         database=FirebaseDatabase.getInstance();
         auth=FirebaseAuth.getInstance();
@@ -62,7 +63,7 @@ public class ChatDetail extends AppCompatActivity {
         Picasso.get().load(profilePic).placeholder(R.drawable.user).into(iv_detail_photoChat);
         //inside chhat work
         messageModels =new ArrayList<>();
-        chatAdapter=new ChatAdapter(messageModels,this);
+        chatAdapter=new ChatAdapter(messageModels,this,receiverId);
         chatrecyclerView.setAdapter(chatAdapter);
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
@@ -84,6 +85,9 @@ public class ChatDetail extends AppCompatActivity {
                         messageModels.clear();//twice message deleted
                         for(DataSnapshot snapshot1: snapshot.getChildren()){
                             MessageModel model=snapshot1.getValue(MessageModel.class);
+
+                            // get meesageID
+                            model.setMessageId(snapshot1.getKey());
                             messageModels.add(model);
                         }
                         //instant update

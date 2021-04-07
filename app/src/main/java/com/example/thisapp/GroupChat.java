@@ -41,6 +41,7 @@ public class GroupChat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_chat);
         init();
+        getSupportActionBar().hide();
 
         final FirebaseDatabase database=FirebaseDatabase.getInstance();
         final ArrayList<MessageModel> messageModels=new ArrayList<>();

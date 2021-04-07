@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.thisapp.Adapters.UsersAdapter;
 import com.example.thisapp.Models.Users;
 import com.example.thisapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,16 +29,11 @@ public class ChatsFragments extends Fragment {
     RecyclerView recyclerViewChats;
     FirebaseDatabase database;
 
+
     public ChatsFragments() {
         // Required empty public constructor
     }
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        LayoutInflater layoutInflater=
-////        setContentView(R.layout.main_activity);
-////        init();
-//    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,7 +59,11 @@ public class ChatsFragments extends Fragment {
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Users users=dataSnapshot.getValue(Users.class);
                     users.setuId(dataSnapshot.getKey());
-                    list.add(users);
+                    //removing user who is login
+                    if(!users.getuId().equals(FirebaseAuth.getInstance().getUid())){
+                        list.add(users);
+                    }
+
                 }
                 usersAdapter.notifyDataSetChanged();
             }
